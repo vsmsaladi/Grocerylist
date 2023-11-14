@@ -18,10 +18,10 @@ const GroceryItems = () => {
                 groceryItem.name === item.name ? { ...groceryItem, cost: response.data.cost } : groceryItem);
             setGroceryItems(updateItem);
 
-            const updateCartItems = [...cartItems, {name: item.name, cost: response.data.cost}];
+            const updateCartItems = [...cartItems, { name: item.name, cost: response.data.cost }];
             setCartItems(updateCartItems);
 
-            const updatedTotalCost = TotalCost+response.data.cost;
+            const updatedTotalCost = TotalCost + response.data.cost;
             setTotalCost(updatedTotalCost);
         }
         catch (error) {
@@ -33,25 +33,28 @@ const GroceryItems = () => {
 
 
     return (
-        <div>
-            <h2> Available Grocery List </h2>
-            <ul>
-                {groceryItems.map((item) => (
-                    <li key={item.name} onClick={() => addToCart(item)} >
-                        {item.name}
-                    </li>
-                ))}
-            </ul>
-
-            <h1> Cart List</h1>
-            <ul>
-            {cartItems.map((item) => (
-                    <li key={item.name} >
-                        {item.name} - {item.cost}
-                    </li>
-                ))}
-            </ul>
-            Total - {TotalCost}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ marginRight: '100px' }}>
+                <h2> Available Grocery List </h2>
+                <ul>
+                    {groceryItems.map((item) => (
+                        <li key={item.name} onClick={() => addToCart(item)} >
+                            {item.name}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <h2> Cart List</h2>
+                <ul>
+                    {cartItems.map((item) => (
+                        <li key={item.name} >
+                            {item.name} - {item.cost}
+                        </li>
+                    ))}
+                </ul>
+                Total - {TotalCost}
+            </div>
         </div>
     );
 
