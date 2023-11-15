@@ -11,9 +11,15 @@ const GroceryItems = () => {
 
     const [cartItems, setCartItems] = useState([]);
     const [TotalCost, setTotalCost] = useState(0);
+
+    
     const addToCart = async (item) => {
         try {
             const response = await axios.get('http://localhost:3000/api/randomnumber');
+
+            const isItemInCart = cartItems.map((cartItem) => cartItem.name === item.name ? true : false);
+            console.log(item.name, isItemInCart);
+
             const updateItem = groceryItems.map((groceryItem) =>
                 groceryItem.name === item.name ? { ...groceryItem, cost: response.data.cost } : groceryItem);
             setGroceryItems(updateItem);
@@ -31,21 +37,20 @@ const GroceryItems = () => {
 
 
 
-
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ marginRight: '100px' }}>
-                <h2> Available Grocery List </h2>
+            <section style={{ marginRight: '100px' }}>
+                <h1> Available Grocery List </h1>
                 <ul>
                     {groceryItems.map((item) => (
-                        <li key={item.name} onClick={() => addToCart(item)} >
+                        <li className="itemlink" key={item.name} onClick={() => addToCart(item)} >
                             {item.name}
                         </li>
                     ))}
                 </ul>
-            </div>
-            <div>
-                <h2> Cart List</h2>
+            </section>
+            <section>
+                <h1> Cart List</h1>
                 <ul>
                     {cartItems.map((item) => (
                         <li key={item.name} >
@@ -54,7 +59,7 @@ const GroceryItems = () => {
                     ))}
                 </ul>
                 Total - {TotalCost}
-            </div>
+            </section>
         </div>
     );
 

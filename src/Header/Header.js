@@ -5,7 +5,7 @@ function Header() {
         <header className="header">
             <h1>GROCERY LIST
 
-            <a href="https://github.com/vsmsaladi/Grocerylist" className="github" target="_blank" rel="noreferrer">
+            <a href="https://github.com/vsmsaladi/Grocerylist" className="github" target="_blank" rel="noreferrer" title="github!">
                 <img
                     src="github.jpg"
                     alt="GITHUB REPO LINK"
